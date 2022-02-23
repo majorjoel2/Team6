@@ -97,5 +97,5 @@ end
 
 %print out angle and color
 for i = 1 : length(finalColors(:,1))
-    sprintf("Angle: %f Color: %s", degAngles(i), finalColorString(i))
+    fprintf("Angle: %f Color: %s\n", degAngles(i), finalColorString(i));
 end
