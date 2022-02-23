@@ -39,7 +39,7 @@ for i = 1:length(centers(:,1))
     %draw lines to all of the circles
     line([circCenter(1) centers(i,1)], [circCenter(2) centers(i,2)], 'Color', 'b');
     %calculate angle in radians of each of the circles
-    angles(i) = atan2(circCenter(2)-centers(i,2),circCenter(1)-centers(i,1));
+    angles(i) = atan2(circCenter(2)-centers(i,2),centers(i,1)-circCenter(1));
     %create circle mask to only look at inside 50% of circle
     mask = (x-centers(i,1)).^2 + (y-centers(i,2)).^2 < floor(radii(i)*0.5).^2;
     %get average r, g, and b of circle inside
