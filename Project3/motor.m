@@ -74,7 +74,7 @@ set_param("motor_model_updated_F21", "SimulationCommand", "start")
 fig = uifigure('Name', 'Click to Point', 'Position', [0 0 640 480]);
 pnl = uipanel(fig, 'BackgroundColor', [1 1 1], 'Position', [0 0 640 480]);
 
-for i = 1 : 10
+for i = 1 : length(circColors(1,:,1))
     btn(i) = uibutton(pnl, 'Position', [centers(i,1)-radii(i) 480-(centers(i,2)-radii(i)) radii(i)*2 radii(i)*2], 'BackgroundColor', newColors(i,:), 'Text', '', 'ButtonPushedFcn', @(btn,event) pointToAngle(btn, degAngles(i)));
 end
 
