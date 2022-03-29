@@ -6,7 +6,7 @@ clear('cam')
 
 %start cam and take a picture
 webcamlist;
-cam = webcam(2);
+cam = webcam(1);
 cam.Resolution = '640x480';
 preview(cam);
 pause(5);
