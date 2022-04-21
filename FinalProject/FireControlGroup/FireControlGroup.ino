@@ -37,9 +37,32 @@ void setup() {
   pinMode(13, OUTPUT);
 }
 
+float kConvert = 0.56;
+int test = 1;
+
 void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(13, digitalRead(12));
+  //if(digitalRead(12) == HIGH){
+  if(test == 1) {
+    test = 0;
+    //Start Launch Control;
+    float distanceToGoal = rangeSensor();
+    float motorSpeed = distanceToGoal * kConvert;
+    //Get motor up to speed
+    for(int i = 0; i < 200; i++){
+      analogWrite(4, pidCalculate(motorSpeed));
+      delay(5);
+    }
+    //Fire
+    digitalWrite(7, HIGH);
+    for(int i = 0; i < 200; i++){
+      analogWrite(4, pidCalculate(motorSpeed));
+      delay(5);
+    }
+    digitalWrite(7, LOW);
+    analogWrite(4, 0);
+  }
 }
 
 float rangeSensor(){
@@ -50,31 +73,33 @@ float rangeSensor(){
   delayMicroseconds(10);
   digitalWrite(6, LOW);
   long duration = pulseIn(5, HIGH);
+  //Convert to cm
   distance = duration * 0.034 / 2;
   return distance;
 }
 
-float kP = 0.0;
-float kI = 0.0;
-float kD = 0.0;
+float kP = 3.0;
+float kI = 0.5;
+float kD = 0.5;
 float integral = 0.0;
 long lastEncoderValue = 0;
 float lastError = 0.0;
 
 float speedCalculate(){
-  int ticksPerRev = 1000;
-  int calcFreq = 1000;
+  float ticksPerRev = 1024;
+  float calcFreq = 200;
   long encoderValue = flywheelEnc.read();
   long tickChange = encoderValue - lastEncoderValue;
   lastEncoderValue = encoderValue;
-  float flywheelSpeed = (float)(tickChange / ticksPerRev) * (float)(calcFreq);
+  float flywheelSpeed = ((float)(tickChange) / ticksPerRev) * calcFreq;
   return flywheelSpeed;
 }
 
 int pidCalculate(float targetRPS){
   int motorPWM = 0;
   //Calc Error
-  float error = targetRPS - speedCalculate();
+  float currentRPS = speedCalculate();
+  float error = targetRPS - currentRPS;
 
   //Calc Proportional
   float P = error * kP;
@@ -92,6 +117,12 @@ int pidCalculate(float targetRPS){
 
   //Limit motor output
   motorPWM = motorPWM > 255 ? 255 : motorPWM < 0 ? 0 : motorPWM;
+
+  //Print Output
+  Serial.print("Data: ");
+  Serial.print(targetRPS);
+  Serial.print(" ");
+  Serial.println(currentRPS);
 
   //Update last error and return pwm value
   lastError = error;
