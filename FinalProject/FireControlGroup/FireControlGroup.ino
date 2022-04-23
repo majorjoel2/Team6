@@ -50,15 +50,15 @@ void loop() {
     float distanceToGoal = rangeSensor();
     float motorSpeed = distanceToGoal * kConvert;
     //Get motor up to speed
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < 250; i++){
       analogWrite(4, pidCalculate(motorSpeed));
-      delay(5);
+      delay(2);
     }
     //Fire
     digitalWrite(7, HIGH);
-    for(int i = 0; i < 100; i++){
+    for(int i = 0; i < 250; i++){
       analogWrite(4, pidCalculate(motorSpeed));
-      delay(5);
+      delay(2);
     }
     digitalWrite(7, LOW);
     analogWrite(4, 0);
@@ -87,7 +87,7 @@ float lastError = 0.0;
 
 float speedCalculate(){
   float ticksPerRev = 1024;
-  float calcFreq = 200;
+  float calcFreq = 500;
   long encoderValue = flywheelEnc.read();
   long tickChange = encoderValue - lastEncoderValue;
   lastEncoderValue = encoderValue;
@@ -95,6 +95,7 @@ float speedCalculate(){
   return flywheelSpeed;
 }
 
+int timePID = 0;
 int pidCalculate(float targetRPS){
   int motorPWM = 0;
   //Calc Error
@@ -119,7 +120,9 @@ int pidCalculate(float targetRPS){
   motorPWM = motorPWM > 255 ? 255 : motorPWM < 0 ? 0 : motorPWM;
 
   //Print Output
-  Serial.print("Data: ");
+  Serial.print(timePID * 2);
+  timePID++;
+  Serial.print(" ");
   Serial.print(targetRPS);
   Serial.print(" ");
   Serial.println(currentRPS);
