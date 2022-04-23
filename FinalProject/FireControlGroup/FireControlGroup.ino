@@ -79,7 +79,7 @@ float rangeSensor(){
 }
 
 float kP = 30.0;
-float kI = 0.0;
+float kI = 1.0;
 float kD = 5.0;
 float integral = 0.0;
 long lastEncoderValue = 0;
