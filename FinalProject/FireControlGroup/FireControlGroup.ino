@@ -50,13 +50,13 @@ void loop() {
     float distanceToGoal = rangeSensor();
     float motorSpeed = distanceToGoal * kConvert;
     //Get motor up to speed
-    for(int i = 0; i < 200; i++){
+    for(int i = 0; i < 100; i++){
       analogWrite(4, pidCalculate(motorSpeed));
       delay(5);
     }
     //Fire
     digitalWrite(7, HIGH);
-    for(int i = 0; i < 200; i++){
+    for(int i = 0; i < 100; i++){
       analogWrite(4, pidCalculate(motorSpeed));
       delay(5);
     }
