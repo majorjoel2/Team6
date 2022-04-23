@@ -4,13 +4,13 @@ clear
 clear('cam')
 
 webcamlist;
-% cam = webcam(2);
-% cam.Resolution = '640x480';
-% preview(cam);
+cam = webcam(1);
+cam.Resolution = '640x480';
+preview(cam);
 pause(5);
-img = imread('output1.png'); %delete
-imshow(img) %delete
-img = imresize(img,[480 640]); %delete
+%img = imread('output1.png'); %delete
+%imshow(img) %delete
+%img = imresize(img,[480 640]); %delete
 
 imshow(img)
 imgBase = img;

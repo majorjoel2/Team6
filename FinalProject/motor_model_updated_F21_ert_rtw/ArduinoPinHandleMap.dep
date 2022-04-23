@@ -1,0 +1,8 @@
+ArduinoPinHandleMap.o: \
+ C:/ProgramData/MATLAB/SupportPackages/R2021b/toolbox/target/supportpackages/arduinobase/src/ArduinoPinHandleMap.cpp \
+ D:/ClemsonNotes/Design1/Team6/FinalProject/motor_model_updated_F21_ert_rtw/rtwtypes.h \
+ E:/extern/include/tmwtypes.h
+
+D:/ClemsonNotes/Design1/Team6/FinalProject/motor_model_updated_F21_ert_rtw/rtwtypes.h:
+
+E:/extern/include/tmwtypes.h:

@@ -37,7 +37,7 @@ void setup() {
   pinMode(13, OUTPUT);
 }
 
-float kConvert = 0.56;
+float kConvert = 0.54;
 int test = 1;
 
 void loop() {
