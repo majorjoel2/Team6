@@ -78,9 +78,9 @@ float rangeSensor(){
   return distance;
 }
 
-float kP = 3.0;
-float kI = 0.5;
-float kD = 0.5;
+float kP = 5.0;
+float kI = 0.1;
+float kD = 0.1;
 float integral = 0.0;
 long lastEncoderValue = 0;
 float lastError = 0.0;
