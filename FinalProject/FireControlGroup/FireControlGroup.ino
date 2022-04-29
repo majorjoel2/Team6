@@ -37,32 +37,43 @@ void setup() {
   pinMode(13, OUTPUT);
 }
 
-float kConvert = 0.54;
+float kConvert = 0.51;
 int test = 1;
+int test2 = 1;
+
+float integral = 0.0;
+float lastError = 0.0;
 
 void loop() {
   // put your main code here, to run repeatedly:
   digitalWrite(13, digitalRead(12));
-  //if(digitalRead(12) == HIGH){
-  if(test == 1) {
+  //if(digitalRead(12) == HIGH && test == 1){
+  if(test2 == 1) {
+    test2 = 0;
     test = 0;
     //Start Launch Control;
     float distanceToGoal = rangeSensor();
     float motorSpeed = distanceToGoal * kConvert;
     //Get motor up to speed
-    for(int i = 0; i < 250; i++){
+    for(int i = 0; i < 125; i++){
       analogWrite(4, pidCalculate(motorSpeed));
       delay(2);
     }
     //Fire
     digitalWrite(7, HIGH);
-    for(int i = 0; i < 250; i++){
+    for(int i = 0; i < 75; i++){
       analogWrite(4, pidCalculate(motorSpeed));
       delay(2);
     }
     digitalWrite(7, LOW);
     analogWrite(4, 0);
   }
+  if(digitalRead(12) == LOW){
+    test = 1;
+    integral = 0.0;
+    lastError = 0.0;
+  }
+  delay(5);
 }
 
 float rangeSensor(){
@@ -81,9 +92,7 @@ float rangeSensor(){
 float kP = 30.0;
 float kI = 2.0;
 float kD = 5.0;
-float integral = 0.0;
 long lastEncoderValue = 0;
-float lastError = 0.0;
 
 float speedCalculate(){
   float ticksPerRev = 1024;
