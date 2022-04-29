@@ -7,9 +7,9 @@
  *
  * Code generation for model "motor_model_updated_F21".
  *
- * Model version              : 4.12
+ * Model version              : 4.15
  * Simulink Coder version : 9.6 (R2021b) 14-May-2021
- * C source code generated on : Sat Apr 23 12:17:30 2022
+ * C source code generated on : Wed Apr 27 13:42:03 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

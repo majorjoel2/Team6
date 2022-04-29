@@ -7,9 +7,9 @@
  *
  * Code generation for model "motor_model_updated_F21".
  *
- * Model version              : 4.12
+ * Model version              : 4.15
  * Simulink Coder version : 9.6 (R2021b) 14-May-2021
- * C source code generated on : Sat Apr 23 12:17:30 2022
+ * C source code generated on : Wed Apr 27 13:42:03 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -191,6 +191,7 @@ typedef struct {
   codertarget_arduinobase_int_m_T obj; /* '<S2>/Encoder' */
   codertarget_arduinobase_block_T obj_f;/* '<S2>/Driver In2' */
   codertarget_arduinobase_block_T obj_l;/* '<S2>/Driver In1' */
+  codertarget_arduinobase_block_T obj_g;/* '<Root>/Digital Output' */
   codertarget_arduinobase_inter_T obj_b;/* '<S2>/Enable' */
   real_T TimeStampA;                   /* '<S1>/Derivative1' */
   real_T LastUAtTimeA;                 /* '<S1>/Derivative1' */
@@ -205,6 +206,7 @@ typedef struct {
   boolean_T objisempty_k;              /* '<S2>/Enable' */
   boolean_T objisempty_e;              /* '<S2>/Driver In2' */
   boolean_T objisempty_b;              /* '<S2>/Driver In1' */
+  boolean_T objisempty_c;              /* '<Root>/Digital Output' */
   DW_MotorDirection1_motor_mode_T ConstantPosition;/* '<S2>/Constant Position' */
   DW_MotorDirection1_motor_mode_T MotorDirection2;/* '<S2>/Motor Direction 2' */
   DW_MotorDirection1_motor_mode_T MotorDirection1;/* '<S2>/Motor Direction1' */
@@ -282,6 +284,9 @@ struct P_motor_model_updated_F21_T_ {
                                         */
   real_T Gain_Gain;                    /* Expression: 255/5
                                         * Referenced by: '<S2>/Gain'
+                                        */
+  real_T pinState_Value;               /* Expression: 0
+                                        * Referenced by: '<Root>/pinState'
                                         */
   int32_T angular_positionrelative_countC;
                           /* Computed Parameter: angular_positionrelative_countC

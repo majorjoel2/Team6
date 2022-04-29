@@ -7,9 +7,9 @@
  *
  * Code generation for model "motor_model_updated_F21".
  *
- * Model version              : 4.12
+ * Model version              : 4.15
  * Simulink Coder version : 9.6 (R2021b) 14-May-2021
- * C source code generated on : Sat Apr 23 12:17:30 2022
+ * C source code generated on : Wed Apr 27 13:42:03 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -72,6 +72,11 @@ P_motor_model_updated_F21_T motor_model_updated_F21_P = {
    * Referenced by: '<S2>/Gain'
    */
   51.0,
+
+  /* Expression: 0
+   * Referenced by: '<Root>/pinState'
+   */
+  0.0,
 
   /* Computed Parameter: angular_positionrelative_countC
    * Referenced by: '<S2>/angular_position =  [relative_count//COUNTS_PER_REV] *360 degrees'

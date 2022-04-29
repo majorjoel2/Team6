@@ -7,9 +7,9 @@
  *
  * Code generation for model "motor_model_updated_F21".
  *
- * Model version              : 4.12
+ * Model version              : 4.15
  * Simulink Coder version : 9.6 (R2021b) 14-May-2021
- * C source code generated on : Sat Apr 23 12:17:30 2022
+ * C source code generated on : Wed Apr 27 13:42:03 2022
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -513,6 +513,25 @@ void motor_model_updated_F21_step(void)
       writeDigitalPin(31, tmp_1);
 
       /* End of MATLABSystem: '<S2>/Driver In2' */
+
+      /* MATLABSystem: '<Root>/Digital Output' incorporates:
+       *  Constant: '<Root>/pinState'
+       */
+      motor_model_updated_F21_B.Abs = rt_roundd_snf
+        (motor_model_updated_F21_P.pinState_Value);
+      if (motor_model_updated_F21_B.Abs < 256.0) {
+        if (motor_model_updated_F21_B.Abs >= 0.0) {
+          tmp_1 = (uint8_T)motor_model_updated_F21_B.Abs;
+        } else {
+          tmp_1 = 0U;
+        }
+      } else {
+        tmp_1 = MAX_uint8_T;
+      }
+
+      writeDigitalPin(9, tmp_1);
+
+      /* End of MATLABSystem: '<Root>/Digital Output' */
     }
   }
 
@@ -676,27 +695,28 @@ void motor_model_updated_F21_initialize(void)
   motor_model_updated_F21_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
-  motor_model_updated_F21_M->Sizes.checksums[0] = (2318672353U);
-  motor_model_updated_F21_M->Sizes.checksums[1] = (2697138134U);
-  motor_model_updated_F21_M->Sizes.checksums[2] = (3837693565U);
-  motor_model_updated_F21_M->Sizes.checksums[3] = (3418928899U);
+  motor_model_updated_F21_M->Sizes.checksums[0] = (843208572U);
+  motor_model_updated_F21_M->Sizes.checksums[1] = (439513351U);
+  motor_model_updated_F21_M->Sizes.checksums[2] = (3142163131U);
+  motor_model_updated_F21_M->Sizes.checksums[3] = (3665725941U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[8];
+    static const sysRanDType *systemRan[9];
     motor_model_updated_F21_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
-    systemRan[1] = (sysRanDType *)
+    systemRan[1] = &rtAlwaysEnabled;
+    systemRan[2] = (sysRanDType *)
       &motor_model_updated_F21_DW.ConstantPosition.MotorDirection1_SubsysRanBC;
-    systemRan[2] = &rtAlwaysEnabled;
     systemRan[3] = &rtAlwaysEnabled;
     systemRan[4] = &rtAlwaysEnabled;
     systemRan[5] = &rtAlwaysEnabled;
-    systemRan[6] = (sysRanDType *)
-      &motor_model_updated_F21_DW.MotorDirection2.MotorDirection1_SubsysRanBC;
+    systemRan[6] = &rtAlwaysEnabled;
     systemRan[7] = (sysRanDType *)
+      &motor_model_updated_F21_DW.MotorDirection2.MotorDirection1_SubsysRanBC;
+    systemRan[8] = (sysRanDType *)
       &motor_model_updated_F21_DW.MotorDirection1.MotorDirection1_SubsysRanBC;
     rteiSetModelMappingInfoPtr(motor_model_updated_F21_M->extModeInfo,
       &motor_model_updated_F21_M->SpecialInfo.mappingInfo);
@@ -765,6 +785,13 @@ void motor_model_updated_F21_initialize(void)
     motor_model_updated_F21_DW.obj_f.isInitialized = 1L;
     digitalIOSetup(31, 1);
     motor_model_updated_F21_DW.obj_f.isSetupComplete = true;
+
+    /* Start for MATLABSystem: '<Root>/Digital Output' */
+    motor_model_updated_F21_DW.obj_g.matlabCodegenIsDeleted = false;
+    motor_model_updated_F21_DW.objisempty_c = true;
+    motor_model_updated_F21_DW.obj_g.isInitialized = 1L;
+    digitalIOSetup(9, 1);
+    motor_model_updated_F21_DW.obj_g.isSetupComplete = true;
   }
 
   /* InitializeConditions for Derivative: '<S1>/Derivative1' */
@@ -823,4 +850,11 @@ void motor_model_updated_F21_terminate(void)
   }
 
   /* End of Terminate for MATLABSystem: '<S2>/Driver In2' */
+
+  /* Terminate for MATLABSystem: '<Root>/Digital Output' */
+  if (!motor_model_updated_F21_DW.obj_g.matlabCodegenIsDeleted) {
+    motor_model_updated_F21_DW.obj_g.matlabCodegenIsDeleted = true;
+  }
+
+  /* End of Terminate for MATLABSystem: '<Root>/Digital Output' */
 }

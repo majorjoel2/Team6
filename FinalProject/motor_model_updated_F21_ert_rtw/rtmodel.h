@@ -4,7 +4,7 @@
  * Code generation for Simulink model "motor_model_updated_F21".
  *
  * Simulink Coder version                : 9.6 (R2021b) 14-May-2021
- * C source code generated on : Sat Apr 23 12:17:30 2022
+ * C source code generated on : Wed Apr 27 13:42:03 2022
  *
  * Note that the generated code is not dependent on this header file.
  * The file is used in cojuction with the automatic build procedure.
